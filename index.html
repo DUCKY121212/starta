@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starta.Net | Official Discord</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Kanit:wght@300;500&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #050505; /* พื้นหลังดำกันภาพไม่โหลด */
+            overflow: hidden;
+            font-family: 'Kanit', sans-serif;
+            color: white;
+        }
+
+        /* --- 1. Background Image Layer --- */
+        .bg-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* ตรวจสอบชื่อไฟล์ให้ตรงกับที่อัปโหลดบน GitHub */
+            background-image: url('image_6d3d66.png'); 
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.5) contrast(1.1); /* ปรับภาพให้เข้มขึ้นเพื่อส่งเสริมตัวหนังสือ */
+            z-index: -2;
+            transform: scale(1.05); /* กันขอบขาว */
+            animation: bgZoom 20s infinite alternate ease-in-out;
+        }
+
+        /* --- 2. Overlay & Scanlines (เอฟเฟกต์หน้าจอไฮเทค) --- */
+        .bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at center, transparent 20%, rgba(0,0,0,0.8) 100%),
+                linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%),
+                linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            background-size: 100% 100%, 100% 4px, 3px 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* --- 3. Main Content Card --- */
+        .main-card {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 70px 50px;
+            border-radius: 25px;
+            text-align: center;
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 0, 127, 0.3);
+            box-shadow: 
+                0 0 40px rgba(0, 0, 0, 0.5),
+                inset 0 0 20px rgba(255, 0, 127, 0.1);
+            position: relative;
+            max-width: 500px;
+            width: 90%;
+            animation: cardFadeIn 1.2s ease-out;
+        }
+
+        /* เอฟเฟกต์แสงวิ่งรอบกล่อง */
+        .main-card::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(45deg, transparent, transparent, #ff007f, transparent, #7000ff);
+            background-size: 200% 200%;
+            border-radius: 25px;
+            z-index: -1;
+            animation: borderGlow 4s linear infinite;
+            opacity: 0.6;
+        }
+
+        /* --- 4. Typography --- */
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            margin-bottom: 5px;
+            color: #fff;
+            text-shadow: 
+                0 0 10px #ff007f,
+                0 0 20px #ff007f,
+                0 0 40px #ff007f;
+            animation: textPulse 2.5s infinite alternate;
+        }
+
+        h1 span {
+            color: #ff007f;
+            -webkit-text-stroke: 1px #fff;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            color: #ff99cc;
+            letter-spacing: 4px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+
+        /* --- 5. Discord Button (Cyber Style) --- */
+        .discord-link {
+            display: inline-block;
+            padding: 20px 45px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: #fff;
+            background: transparent;
+            border: 2px solid #ff007f;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+            transition: 0.4s;
+            overflow: hidden;
+        }
+
+        .discord-link:hover {
+            background: #ff007f;
+            box-shadow: 
+                0 0 20px #ff007f,
+                0 0 50px #ff007f;
+            transform: translateY(-5px);
+            color: #000;
+        }
+
+        /* --- 6. Animations Keyframes --- */
+        @keyframes bgZoom {
+            from { transform: scale(1.05); }
+            to { transform: scale(1.15); }
+        }
+
+        @keyframes cardFadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes borderGlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes textPulse {
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0.9; transform: scale(1.02); }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 480px) {
+            h1 { font-size: 2.2rem; letter-spacing: 4px; }
+            .main-card { padding: 50px 30px; }
+            .discord-link { padding: 15px 30px; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-image"></div>
+    <div class="bg-overlay"></div>
+
+    <div class="main-card">
+        <h1>Starta<span>.Net</span></h1>
+        <div class="subtitle">// ACCESS GRANTED \\</div>
+        
+        <p style="margin-bottom: 25px; font-weight: 300; color: #ccc;">
+            ยินดีต้อนรับสู่โปรเจกต์อย่างเป็นทางการ<br>คลิกปุ่มด้านล่างเพื่อเข้าร่วมชุมชนของเรา
+        </p>
+
+        <a href="https://discord.gg/bYyhxSUH7" class="discord-link" target="_blank">
+            JOIN DISCORD
+        </a>
+    </div>
+
+</body>
+</html>
